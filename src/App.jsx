@@ -1,28 +1,77 @@
-import { useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
+import Header from './components/Header'
+import Hero from './components/Hero'
+import Story from './components/Story'
+import Footer from './components/Footer'
+import CollectionGrid from './components/CollectionGrid'
+import ProductDetail from './components/ProductDetail'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+function HomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
-        </div>
-      </div>
+    <main className="bg-black text-zinc-100">
+      <Hero />
+      <Story />
+      <CollectionGrid />
+    </main>
+  )
+}
+
+function CollectionPage() {
+  return (
+    <main className="pt-24 bg-black text-zinc-100">
+      <CollectionGrid />
+    </main>
+  )
+}
+
+function AboutPage() {
+  return (
+    <main className="pt-24 bg-zinc-950 text-zinc-200 min-h-screen">
+      <section className="max-w-4xl mx-auto px-6 py-16">
+        <h1 className="font-serif text-4xl">Seven Sins, Eight Portals</h1>
+        <p className="mt-6 text-zinc-400 leading-relaxed">A modern interpretation of the medieval deadly sins through perfumery. Each bottle is an emblem, each accord a morality play of aroma.</p>
+      </section>
+    </main>
+  )
+}
+
+function ContactPage() {
+  return (
+    <main className="pt-24 bg-zinc-950 text-zinc-200 min-h-screen">
+      <section className="max-w-3xl mx-auto px-6 py-16">
+        <h1 className="font-serif text-4xl">Contact</h1>
+        <p className="mt-6 text-zinc-400">For wholesale and press inquiries: contact@oblivionparfums.example</p>
+      </section>
+    </main>
+  )
+}
+
+function CartPage() {
+  return (
+    <main className="pt-24 bg-zinc-950 text-zinc-200 min-h-screen">
+      <section className="max-w-4xl mx-auto px-6 py-16">
+        <h1 className="font-serif text-4xl">Your Cart</h1>
+        <p className="mt-6 text-zinc-400">Add items from any product page. Checkout integrates with a secure gateway in the next step.</p>
+      </section>
+    </main>
+  )
+}
+
+function AppRouter() {
+  return (
+    <div className="min-h-screen bg-black">
+      <Header />
+      <Routes>
+        <Route index element={<HomePage />} />
+        <Route path="/collection" element={<CollectionPage />} />
+        <Route path="/product/:slug" element={<ProductDetail />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/cart" element={<CartPage />} />
+      </Routes>
+      <Footer />
     </div>
   )
 }
 
-export default App
+export default AppRouter
